@@ -50,6 +50,8 @@ namespace Tmups2InfluxDB
             Console.WriteLine("\tINFLUXDB_DATABASE {0}", INFLUXDB_DATABASE);
             Console.WriteLine("\tINFLUXDB_USERNAME {0}", INFLUXDB_USERNAME);
             Console.WriteLine("\tINFLUXDB_PASSWORD {0}", INFLUXDB_PASSWORD);
+            Console.WriteLine("\tRETRY {0}", RETRY/1000);
+            Console.WriteLine("\tREADING {0}", READING/1000);
             Console.WriteLine("\n\nUsing Status URL   : {0}", statusURLString);
             Console.WriteLine("Using InfluxDB URL : {0}", influxDbURL);
 
