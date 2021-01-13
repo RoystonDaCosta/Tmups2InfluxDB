@@ -19,6 +19,25 @@ namespace Tmups2InfluxDB
             string INFLUXDB_DATABASE = Environment.GetEnvironmentVariable("INFLUXDB_DATABASE");
             string INFLUXDB_USERNAME = Environment.GetEnvironmentVariable("INFLUXDB_USERNAME");
             string INFLUXDB_PASSWORD = Environment.GetEnvironmentVariable("INFLUXDB_PASSWORD");
+            int RETRY, READING;
+            if (!Int32.TryParse(Environment.GetEnvironmentVariable("RETRY"), out RETRY))
+            {
+                Console.WriteLine("Invalid RETRY using 10");
+                RETRY = 10 * 1000;
+            }
+            else
+            {
+                RETRY = RETRY * 1000;
+            }
+            if (!Int32.TryParse(Environment.GetEnvironmentVariable("READING"), out READING))
+            {
+                Console.WriteLine("Invalid READING using 5");
+                READING = 5 * 1000;
+            }
+            else
+            {
+                READING = READING * 1000;
+            }
 
             string statusURLString = "http://" + TMUPS_IP + "/?page=view/ups_status_getdata";
             string influxDbURL = "http://" + INFLUXDB_IP + ":" + INFLUXDB_PORT;
