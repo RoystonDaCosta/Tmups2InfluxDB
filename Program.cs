@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
@@ -12,13 +12,13 @@ namespace Tmups2InfluxDB
         static readonly HttpClient client = new HttpClient();
         static async Task Main(string[] args)
         {
-            string TMUPS_IP = "127.0.0.1";
-            string TMUPS_ID = "Machine ID";
-            string INFLUXDB_IP = "127.0.0.1";
-            string INFLUXDB_PORT = "8086";
-            string INFLUXDB_DATABASE = "database";
-            string INFLUXDB_USERNAME = "username";
-            string INFLUXDB_PASSWORD = "password";
+            string TMUPS_IP = Environment.GetEnvironmentVariable("TMUPS_IP");
+            string TMUPS_ID = Environment.GetEnvironmentVariable("TMUPS_ID");
+            string INFLUXDB_IP = Environment.GetEnvironmentVariable("INFLUXDB_IP");
+            string INFLUXDB_PORT = Environment.GetEnvironmentVariable("INFLUXDB_PORT");
+            string INFLUXDB_DATABASE = Environment.GetEnvironmentVariable("INFLUXDB_DATABASE");
+            string INFLUXDB_USERNAME = Environment.GetEnvironmentVariable("INFLUXDB_USERNAME");
+            string INFLUXDB_PASSWORD = Environment.GetEnvironmentVariable("INFLUXDB_PASSWORD");
 
             string statusURLString = "http://" + TMUPS_IP + "/?page=view/ups_status_getdata";
             string influxDbURL = "http://" + INFLUXDB_IP + ":" + INFLUXDB_PORT;
