@@ -34,6 +34,9 @@ namespace Tmups2InfluxDB
             Console.WriteLine("\n\nUsing Status URL   : {0}",statusURLString);
             Console.WriteLine("Using InfluxDB URL : {0}",influxDbURL);
             
+
+            while (true)
+            {
             InfluxDBClient influxClient = new InfluxDBClient(influxDbURL, INFLUXDB_USERNAME, INFLUXDB_PASSWORD);
 
             try
@@ -46,12 +49,14 @@ namespace Tmups2InfluxDB
                     if (startOfContent < 0)
                     {
                         Console.WriteLine("Error : Start of content not found");
+                            break;
                     }
                     responseBody = responseBody.Substring(startOfContent);
                     int endOfContent = responseBody.IndexOf("</div>", 0);
                     if (endOfContent < 0)
                     {
                         Console.WriteLine("Error : End of content not found");
+                            break;
                     }
                     responseBody = responseBody.Substring(0, endOfContent);
 
@@ -103,6 +108,9 @@ namespace Tmups2InfluxDB
                 Console.WriteLine("\nException Caught!");
                 Console.WriteLine("Message :{0} ", e.Message);
             }
+                influxClient.Dispose();
+
+                Thread.Sleep(10000);
         }
     }
 }
