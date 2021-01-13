@@ -22,6 +22,18 @@ namespace Tmups2InfluxDB
 
             string statusURLString = "http://" + TMUPS_IP + "/?page=view/ups_status_getdata";
             string influxDbURL = "http://" + INFLUXDB_IP + ":" + INFLUXDB_PORT;
+
+            Console.WriteLine("Running with below parameters");
+            Console.WriteLine("\tTMUPS_IP {0}",TMUPS_IP);
+            Console.WriteLine("\tTMUPS_ID {0}",TMUPS_ID);
+            Console.WriteLine("\tINFLUXDB_IP {0}",INFLUXDB_IP);
+            Console.WriteLine("\tINFLUXDB_PORT {0}",INFLUXDB_PORT);
+            Console.WriteLine("\tINFLUXDB_DATABASE {0}",INFLUXDB_DATABASE);
+            Console.WriteLine("\tINFLUXDB_USERNAME {0}",INFLUXDB_USERNAME);
+            Console.WriteLine("\tINFLUXDB_PASSWORD {0}",INFLUXDB_PASSWORD);
+            Console.WriteLine("\n\nUsing Status URL   : {0}",statusURLString);
+            Console.WriteLine("Using InfluxDB URL : {0}",influxDbURL);
+            
             InfluxDBClient influxClient = new InfluxDBClient(influxDbURL, INFLUXDB_USERNAME, INFLUXDB_PASSWORD);
 
             try
