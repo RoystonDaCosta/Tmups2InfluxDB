@@ -116,7 +116,7 @@ namespace Tmups2InfluxDB
 
                         var r = await influxClient.PostPointAsync(INFLUXDB_DATABASE, valMixed);
                         Console.WriteLine(r);
-                        Thread.Sleep(5000);
+                        Thread.Sleep(READING);
                     }
 
                 }
@@ -127,7 +127,7 @@ namespace Tmups2InfluxDB
                 }
                 influxClient.Dispose();
 
-                Thread.Sleep(10000);
+                Thread.Sleep(RETRY);
             }
         }
     }
