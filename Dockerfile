@@ -1,8 +1,14 @@
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+WORKDIR /src
+COPY Tmups2InfluxDB.csproj .
+RUN dotnet restore
+COPY . .
+RUN dotnet publish -c release -o /app
+
 FROM mcr.microsoft.com/dotnet/runtime:3.1
 
-COPY bin/Release/netcoreapp3.1/publish/ App/
-
-WORKDIR /App
+WORKDIR /app
+COPY --from=build /app .
 
 ENV TMUPS_IP "127.0.0.1"
 ENV TMUPS_ID "Machine ID"
